@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Orbital Sentinel | Spacecraft Health Monitor
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SPACE BACKGROUND
+===================================================== -->
+
+<div class="space-bg">
+
+    <div class="stars"></div>
+
+    <div class="stars stars-2"></div>
+
+    <div class="stars stars-3"></div>
+
+
+    <div class="nebula nebula-1"></div>
+
+    <div class="nebula nebula-2"></div>
+
+
+    <div class="planet planet-earth">
+        🌍
+    </div>
+
+
+    <div class="planet planet-saturn">
+        🪐
+    </div>
+
+
+    <div class="shooting-star"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+            🛰️
+        </div>
+
+        <div>
+
+            <h1>
+                ORBITAL SENTINEL
+            </h1>
+
+            <span>
+                AI SPACECRAFT HEALTH INTELLIGENCE
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="mission-status">
+
+        <div>
+
+            <small>
+                MISSION
+            </small>
+
+            <strong>
+                OPS-SAT DEMO
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                MODE
+            </small>
+
+            <strong id="missionMode">
+                ☀️ SUNLIGHT
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                SYSTEM
+            </small>
+
+            <strong
+                id="systemStatus"
+                class="online"
+            >
+                ● ONLINE
+            </strong>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <span class="eyebrow">
+            AI-POWERED SPACECRAFT MONITORING
+        </span>
+
+
+        <h2>
+
+            From Telemetry
+
+            <span>
+                to Intelligence
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            An intelligent multivariate anomaly
+            detection system that learns normal
+            spacecraft behavior and identifies
+            unusual subsystem patterns.
+
+        </p>
+
+
+        <div class="hero-status">
+
+            <div
+                class="status-circle"
+                id="statusCircle"
+            >
+                ✓
+            </div>
+
+
+            <div>
+
+                <strong id="heroStatus">
+                    SYSTEM NOMINAL
+                </strong>
+
+                <p id="heroMessage">
+                    All spacecraft subsystems
+                    operating normally.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-satellite">
+
+        <div class="orbit orbit-1"></div>
+
+        <div class="orbit orbit-2"></div>
+
+        <div class="orbit orbit-3"></div>
+
+
+        <div class="satellite">
+            🛰️
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DIGITAL TWIN
+===================================================== -->
+
+<div class="section-title">
+
+    <div>
+
+        <span>
+            SPACECRAFT DIGITAL TWIN
+        </span>
+
+        <h2>
+            Subsystem Health
+        </h2>
+
+    </div>
+
+
+    <span class="live">
+        ● LIVE
+    </span>
+
+</div>
+
+
+
+<section class="digital-twin">
+
+
+    <!-- THERMAL -->
+
+    <button
+        class="subsystem thermal"
+        onclick="showSubsystem('thermal')"
+    >
+
+        <span>
+            🌡️
+        </span>
+
+        <strong>
+            THERMAL
+        </strong>
+
+        <small id="thermalStatus">
+            ● NOMINAL
+        </small>
+
+    </button>
+
+
+
+    <!-- POWER -->
+
+    <button
+        class="subsystem power"
+        onclick="showSubsystem('power')"
+    >
+
+        <span>
+            ⚡
+        </span>
+
+        <strong>
+            POWER
+        </strong>
+
+        <small id="powerStatus">
+            ● NOMINAL
+        </small>
+
+    </button>
+
+
+
+    <!-- BATTERY -->
+
+    <button
+        class="subsystem battery"
+        onclick="showSubsystem('battery')"
+    >
+
+        <span>
+            🔋
+        </span>
+
+        <strong>
+            BATTERY
+        </strong>
+
+        <small id="batteryStatus">
+            ● NOMINAL
+        </small>
+
+    </button>
+
+
+
+    <!-- COMMUNICATION -->
+
+    <button
+        class="subsystem communication"
+        onclick="showSubsystem('communication')"
+    >
+
+        <span>
+            📡
+        </span>
+
+        <strong>
+            COMMUNICATION
+        </strong>
+
+        <small id="communicationStatus">
+            ● NOMINAL
+        </small>
+
+    </button>
+
+
+
+    <!-- SPACECRAFT -->
+
+    <div class="spacecraft">
+
+        <div class="solar-panel left"></div>
+
+
+        <div class="spacecraft-body">
+
+            <div class="satellite-emoji">
+                🛰️
+            </div>
+
+            <div class="signal">
+                ●
+            </div>
+
+        </div>
+
+
+        <div class="solar-panel right"></div>
+
+    </div>
+
+
+    <div class="twin-label">
+
+        <small>
+            SPACECRAFT HEALTH
+        </small>
+
+        <strong id="twinHealth">
+            NOMINAL
+        </strong>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SUBSYSTEM DETAILS
+===================================================== -->
+
+<section
+    id="subsystemDetails"
+    class="details hidden"
+>
+
+    <button
+        class="close-btn"
+        onclick="closeSubsystem()"
+    >
+        ×
+    </button>
+
+
+    <div class="details-heading">
+
+        <span id="detailsIcon">
+            ⚡
+        </span>
+
+        <div>
+
+            <small>
+                SUBSYSTEM DIAGNOSTICS
+            </small>
+
+            <h3 id="detailsTitle">
+                Power
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+        <div>
+
+            <small>
+                STATUS
+            </small>
+
+            <strong id="detailsStatus">
+                NOMINAL
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                HEALTH
+            </small>
+
+            <strong id="detailsHealth">
+                96%
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                RISK
+            </small>
+
+            <strong id="detailsRisk">
+                LOW
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OVERALL HEALTH
+===================================================== -->
+
+<section class="health-bar">
+
+    <div>
+
+        <small>
+            OVERALL SPACECRAFT HEALTH
+        </small>
+
+        <div class="health-value">
+
+            <strong id="healthValue">
+                94
+            </strong>
+
+            <span>
+                /100
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-container">
+
+        <div
+            class="progress"
+            id="healthProgress"
+        ></div>
+
+    </div>
+
+
+    <div class="risk">
+
+        <small>
+            CURRENT RISK
+        </small>
+
+        <strong id="riskLevel">
+            LOW
+        </strong>
+
+        <span id="riskDescription">
+            Stable operation
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TELEMETRY
+===================================================== -->
+
+<div class="section-title">
+
+    <div>
+
+        <span>
+            MULTIVARIATE TELEMETRY
+        </span>
+
+        <h2>
+            Live Sensor Visualization
+        </h2>
+
+    </div>
+
+
+    <span class="live">
+        ● STREAMING
+    </span>
+
+</div>
+
+
+
+<section class="panel">
+
+
+    <div class="panel-heading">
+
+        <div>
+
+            <span>
+                TELEMETRY STREAM
+            </span>
+
+            <h2>
+                Spacecraft Sensor Data
+            </h2>
+
+        </div>
+
+
+        <span>
+            LAST 60 READINGS
+        </span>
+
+    </div>
+
+
+
+    <!-- TEMPERATURE -->
+
+    <div class="chart-card">
+
+        <div class="chart-info">
+
+            <div>
+
+                <span>
+                    🌡️
+                </span>
+
+                <strong>
+                    TEMPERATURE
+                </strong>
+
+                <small>
+                    Thermal subsystem
+                </small>
+
+            </div>
+
+
+            <strong id="temperatureValue">
+                32.4 °C
+            </strong>
+
+        </div>
+
+
+        <canvas
+            id="temperatureChart"
+        ></canvas>
+
+    </div>
+
+
+
+    <!-- BATTERY -->
+
+    <div class="chart-card">
+
+        <div class="chart-info">
+
+            <div>
+
+                <span>
+                    🔋
+                </span>
+
+                <strong>
+                    BATTERY VOLTAGE
+                </strong>
+
+                <small>
+                    Energy storage
+                </small>
+
+            </div>
+
+
+            <strong id="voltageValue">
+                3.72 V
+            </strong>
+
+        </div>
+
+
+        <canvas
+            id="voltageChart"
+        ></canvas>
+
+    </div>
+
+
+
+    <!-- CURRENT -->
+
+    <div class="chart-card">
+
+        <div class="chart-info">
+
+            <div>
+
+                <span>
+                    ⚡
+                </span>
+
+                <strong>
+                    CURRENT
+                </strong>
+
+                <small>
+                    Power consumption
+                </small>
+
+            </div>
+
+
+            <strong id="currentValue">
+                1.21 A
+            </strong>
+
+        </div>
+
+
+        <canvas
+            id="currentChart"
+        ></canvas>
+
+    </div>
+
+
+
+    <!-- SOLAR -->
+
+    <div class="chart-card">
+
+        <div class="chart-info">
+
+            <div>
+
+                <span>
+                    ☀️
+                </span>
+
+                <strong>
+                    SOLAR POWER
+                </strong>
+
+                <small>
+                    Power generation
+                </small>
+
+            </div>
+
+
+            <strong id="solarValue">
+                4.52 W
+            </strong>
+
+        </div>
+
+
+        <canvas
+            id="solarChart"
+        ></canvas>
+
+    </div>
+
+
+
+    <!-- ANOMALY SCORE -->
+
+    <div class="chart-card anomaly-chart">
+
+        <div class="chart-info">
+
+            <div>
+
+                <span>
+                    🧠
+                </span>
+
+                <strong>
+                    AI ANOMALY SCORE
+                </strong>
+
+                <small>
+                    LSTM reconstruction error
+                </small>
+
+            </div>
+
+
+            <strong id="anomalyValue">
+                0.12
+            </strong>
+
+        </div>
+
+
+        <canvas
+            id="anomalyChart"
+        ></canvas>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SENSOR CARDS
+===================================================== -->
+
+<section class="sensor-cards">
+
+
+    <div class="sensor-card">
+
+        <span>
+            🌡️ TEMPERATURE
+        </span>
+
+        <small>
+            Thermal
+        </small>
+
+        <strong id="tempCard">
+            32.4 °C
+        </strong>
+
+        <em id="tempState">
+            ● NORMAL
+        </em>
+
+    </div>
+
+
+    <div class="sensor-card">
+
+        <span>
+            🔋 BATTERY VOLTAGE
+        </span>
+
+        <small>
+            Energy
+        </small>
+
+        <strong id="voltCard">
+            3.72 V
+        </strong>
+
+        <em id="voltState">
+            ● NORMAL
+        </em>
+
+    </div>
+
+
+    <div class="sensor-card">
+
+        <span>
+            ⚡ CURRENT
+        </span>
+
+        <small>
+            Power
+        </small>
+
+        <strong id="currentCard">
+            1.21 A
+        </strong>
+
+        <em id="currentState">
+            ● NORMAL
+        </em>
+
+    </div>
+
+
+    <div class="sensor-card">
+
+        <span>
+            ☀️ SOLAR POWER
+        </span>
+
+        <small>
+            Generation
+        </small>
+
+        <strong id="solarCard">
+            4.52 W
+        </strong>
+
+        <em id="solarState">
+            ● NORMAL
+        </em>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AI ENGINE
+===================================================== -->
+
+<div class="section-title">
+
+    <div>
+
+        <span>
+            AI ANOMALY ENGINE
+        </span>
+
+        <h2>
+            LSTM + Dynamic Thresholding
+        </h2>
+
+    </div>
+
+
+    <span class="ai-label">
+        AI ACTIVE
+    </span>
+
+</div>
+
+
+
+<section class="ai-cards">
+
+
+    <div>
+
+        <small>
+            ANOMALY SCORE
+        </small>
+
+        <strong id="aiScore">
+            0.12
+        </strong>
+
+        <span>
+            Reconstruction error
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <small>
+            NDT THRESHOLD
+        </small>
+
+        <strong id="ndtThreshold">
+            0.43
+        </strong>
+
+        <span>
+            Dynamic threshold
+        </span>
+
+    </div>
+
+
+    <div>
+
+        <small>
+            AI CONFIDENCE
+        </small>
+
+        <strong>
+            <span id="confidence">
+                96
+            </span>%
+        </strong>
+
+        <span>
+            Health assessment
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ANOMALY DETECTION HISTORY
+===================================================== -->
+
+<div class="section-title">
+
+    <div>
+
+        <span>
+            MISSION INTELLIGENCE
+        </span>
+
+        <h2>
+            🚨 Anomaly Detection History
+        </h2>
+
+    </div>
+
+
+    <span
+        id="anomalyCounter"
+        class="anomaly-counter"
+    >
+        0 DETECTIONS
+    </span>
+
+</div>
+
+
+
+<section class="anomaly-history-panel">
+
+
+    <!-- SUMMARY -->
+
+    <div
+        id="noAnomaly"
+        class="no-anomaly"
+    >
+
+        <div>
+            ✓
+        </div>
+
+        <strong>
+            No anomalies detected
+        </strong>
+
+        <span>
+            The AI system is continuously monitoring
+            multivariate spacecraft telemetry.
+        </span>
+
+    </div>
+
+
+
+    <!-- TABLE -->
+
+    <div
+        id="anomalyTableContainer"
+        class="table-container hidden"
+    >
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        TIME
+                    </th>
+
+                    <th>
+                        LOCATION
+                    </th>
+
+                    <th>
+                        SEVERITY
+                    </th>
+
+                    <th>
+                        SCORE
+                    </th>
+
+                    <th>
+                        CONTRIBUTING PARAMETERS
+                    </th>
+
+                    <th>
+                        AI EXPLANATION
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="anomalyTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LATEST ANOMALY
+===================================================== -->
+
+<section
+    id="latestAnomaly"
+    class="latest-anomaly hidden"
+>
+
+    <div class="latest-icon">
+        🚨
+    </div>
+
+
+    <div class="latest-content">
+
+        <span>
+            LATEST AI DETECTION
+        </span>
+
+
+        <h2>
+            Anomaly detected in
+            <strong id="latestLocation">
+                Power Subsystem
+            </strong>
+        </h2>
+
+
+        <p id="latestExplanation">
+
+            Possible power-system abnormality
+            detected from correlated telemetry changes.
+
+        </p>
+
+
+        <div class="latest-details">
+
+            <div>
+
+                <small>
+                    DETECTION TIME
+                </small>
+
+                <strong id="latestTime">
+                    --
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    SEVERITY
+                </small>
+
+                <strong id="latestSeverity">
+                    HIGH
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    SCORE
+                </small>
+
+                <strong id="latestScore">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MISSION LOG
+===================================================== -->
+
+<div class="section-title">
+
+    <div>
+
+        <span>
+            TELEMETRY TERMINAL
+        </span>
+
+        <h2>
+            Mission Data Stream
+        </h2>
+
+    </div>
+
+
+    <span class="live">
+        ● LIVE
+    </span>
+
+</div>
+
+
+
+<section class="terminal">
+
+    <div id="terminalLog"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MISSION CONTEXT
+===================================================== -->
+
+<section class="panel context-panel">
+
+    <div class="panel-heading">
+
+        <div>
+
+            <span>
+                MISSION CONTEXT
+            </span>
+
+            <h2>
+                Context-Aware Monitoring
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="context-grid">
+
+
+        <div>
+
+            <small>
+                OPERATING MODE
+            </small>
+
+
+            <select
+                id="modeSelector"
+                onchange="changeMode()"
+            >
+
+                <option value="sunlight">
+                    ☀️ Sunlight
+                </option>
+
+                <option value="eclipse">
+                    🌑 Eclipse
+                </option>
+
+                <option value="communication">
+                    📡 Communication
+                </option>
+
+                <option value="safe">
+                    🛡️ Safe Mode
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                CONTEXT
+            </small>
+
+            <strong id="contextText">
+                Normal sunlight operation
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                CONTEXT RISK
+            </small>
+
+            <strong
+                id="contextRisk"
+                class="green"
+            >
+                LOW
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <span>
+        🛰️ ORBITAL SENTINEL
+    </span>
+
+    <span>
+        AI SPACECRAFT HEALTH MONITORING
+    </span>
+
+    <span>
+        NASA SMAP / MSL • LSTM • NDT
+    </span>
+
+</footer>
+
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>
